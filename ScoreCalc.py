@@ -134,14 +134,14 @@ if selected_answer:
 # --- Filter to only Q15, Q16, Q17, Q20 ---
     df_cut_filtered = df_cut[df_cut['q_question_code'].isin(['Q15', 'Q16', 'Q17', 'Q20', 'Q23'])]
 
-    st.write(f"Sample size for selected Q4 answer: {sample_size}")
+    st.write(f"Sample size for selected answer: {sample_size}")
 
 # --- Custom labels for subheaders ---
     labels = {
-        "Q15": "Subject Scores",
-        "Q16": "Format Scores",
-        "Q17": "Style Scores",
-        "Q20": "Humor Scores",
+        "Q15": "Content Subject Scores",
+        "Q16": "Content Format Scores",
+        "Q17": "Content Style Scores",
+        "Q20": "Content Humor Scores",
         "Q23": "Brand Attribute Scores"
     }
 
