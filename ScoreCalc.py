@@ -1,6 +1,16 @@
 import streamlit as st
 import pymysql
 import pandas as pd
+# --- App Header ---
+st.markdown(
+    """
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h1 style="margin-bottom: 0;">Black Box Data</h1>
+        <h3 style="margin-top: 0;">Potential Hit Tool</h3>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # --- Configuration ---
 responses_table = "responses_1"
