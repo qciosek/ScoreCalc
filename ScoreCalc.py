@@ -23,27 +23,32 @@ def connect_to_db():
 connection = connect_to_db()
 
 # --- Fetch Q4 answer_texts for dropdown ---
-q4_answers_query = f"""
-SELECT DISTINCT answer_text
+q_answers_query = f"""
+SELECT DISTINCT q_question_code, answer_text
 FROM {question_mapping_table}
-WHERE q_question_code = 'Q4'
-ORDER BY answer_text
+ORDER BY q_question_code, answer_text
 """
-q4_answers_df = pd.read_sql(q4_answers_query, connection)
-q4_answers = q4_answers_df['answer_text'].tolist()
+q_answers_df = pd.read_sql(q_answers_query, connection)
 
-selected_q4 = st.selectbox("Select Q4 answer for data cut:", [""] + q4_answers)
+# Make dropdown grouped by q_question_code
+q_answers_df['display'] = q_answers_df['q_question_code'] + " - " + q_answers_df['answer_text']
+q_answers = q_answers_df['display'].tolist()
 
-if selected_q4:
-    # Get the corresponding question_code(s) for the selected Q4 answer
-    q4_code_query = f"""
+selected_answer = st.selectbox("Select answer for data cut:", [""] + q_answers)
+
+if selected_answer:
+    # Extract q_question_code and answer_text back out
+    q_code, answer_text = selected_answer.split(" - ", 1)
+
+    q_code_query = f"""
     SELECT question_code
     FROM {question_mapping_table}
-    WHERE q_question_code = 'Q4'
-    AND answer_text = '{selected_q4}'
+    WHERE q_question_code = '{q_code}'
+    AND answer_text = '{answer_text}'
     """
-    q4_code_df = pd.read_sql(q4_code_query, connection)
-    selected_questions = q4_code_df['question_code'].tolist()
+    q_code_df = pd.read_sql(q_code_query, connection)
+    selected_questions = q_code_df['question_code'].tolist()
+
 
     # --- Data cut function (identical to yours) ---
     def fetch_data_and_sample_size(connection, selected_questions):
