@@ -127,7 +127,7 @@ if selected_q4:
     df_cut, sample_size = fetch_data_and_sample_size(connection, selected_questions)
 
 # --- Filter to only Q15, Q16, Q17, Q20 ---
-    df_cut_filtered = df_cut[df_cut['q_question_code'].isin(['Q15', 'Q16', 'Q17', 'Q20'])]
+    df_cut_filtered = df_cut[df_cut['q_question_code'].isin(['Q15', 'Q16', 'Q17', 'Q20', 'Q23'])]
 
     st.write(f"Sample size for selected Q4 answer: {sample_size}")
 
@@ -136,12 +136,13 @@ if selected_q4:
         "Q15": "Subject Scores",
         "Q16": "Format Scores",
         "Q17": "Style Scores",
-        "Q20": "Humor Scores"
+        "Q20": "Humor Scores",
+        "Q23": "Brand Attribute Scores"
     }
 
 # --- Display results grouped by q_question_code with custom subheaders ---
     selected_answers = {}
-    for q_code in ['Q15', 'Q16', 'Q17', 'Q20']:
+    for q_code in ['Q15', 'Q16', 'Q17', 'Q20', 'Q23']:
         df_group = df_cut_filtered[df_cut_filtered['q_question_code'] == q_code]
         if not df_group.empty:
             st.subheader(labels.get(q_code, q_code))
