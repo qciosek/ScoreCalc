@@ -176,7 +176,7 @@ if selected_answer:
             scores.append(score)
         if scores:
             avg_score = sum(scores) / len(scores)
-            st.metric("Average Score", f"{avg_score:.2f}/100")
+            st.metric(" ", f"{avg_score:.2f}/100")
 
 
 
