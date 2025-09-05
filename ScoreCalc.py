@@ -168,7 +168,7 @@ if selected_answer:
 
 # --- Calculate average score from selected answers ---
     if selected_answers:
-        st.markdown("### Average Score from Selected Answers")
+        st.markdown("### Success Score")
         scores = []
         for q_code, df_cut in selected_answers.items():
         # Assuming you have a column 'cut_percentage' that represents the score
