@@ -23,7 +23,7 @@ def connect_to_db():
         pass  # Ignore error if no connection exists
 
     connection = pymysql.connect(
-        host= 'myinstancerestored.c5isyysu810z.us-east-2.rds.amazonaws.com',
+        host= 'database-1.c5isyysu810z.us-east-2.rds.amazonaws.com',
         user='admin',
         password='Omega1745!',
         database='study_data',
