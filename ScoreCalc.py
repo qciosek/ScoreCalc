@@ -12,9 +12,26 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# --- Configuration ---
-responses_table = "responses_1"
-question_mapping_table = "question_mapping_1"
+dataset_option = st.sidebar.selectbox(
+    "Pick a dataset",
+    ["Sports Fandom Study", "Content Fandom Study", "Linear TV Study", "Young People Study", "Drivers of Sports Fandom (new)"]
+)
+
+if dataset_option == "Sports Fandom Study":
+    responses_table = "responses_1"
+    question_mapping_table = "question_mapping_1"
+elif dataset_option == "Content Fandom Study":
+    responses_table = "responses_2"
+    question_mapping_table = "question_mapping_2"
+elif dataset_option == "Linear TV Study":
+    responses_table = "responses_4"
+    question_mapping_table = "question_mapping_4"
+elif dataset_option == "Drivers of Sports Fandom (new)":
+    responses_table = "responses_5"
+    question_mapping_table = "question_mapping_5"
+else:  # Test Dataset
+    responses_table = "responses_3"
+    question_mapping_table = "question_mapping_3"
 
 def connect_to_db():
     try:
