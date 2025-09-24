@@ -2,3 +2,5 @@ streamlit
 pymysql
 pandas
 cryptography
+rapidfuzz==3.9.7
+
