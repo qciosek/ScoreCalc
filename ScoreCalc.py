@@ -1,6 +1,8 @@
 import streamlit as st
 import pymysql
 import pandas as pd
+from rapidfuzz import process
+
 # --- App Header ---
 st.markdown(
     """
