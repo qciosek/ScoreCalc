@@ -3,6 +3,16 @@ import pymysql
 import pandas as pd
 from rapidfuzz import process
 
+
+def fuzzy_search(query, choices, limit=10, score_cutoff=50):
+    """
+    Returns top matches for a query from choices using fuzzy string matching.
+    """
+    if not query:
+        return choices  # show all if nothing typed
+    results = process.extract(query, choices, limit=limit, score_cutoff=score_cutoff)
+    return [match[0] for match in results]
+
 # --- App Header ---
 st.markdown(
     """
@@ -63,7 +73,14 @@ q_answers_df = pd.read_sql(q_answers_query, connection)
 q_answers_df['display'] = q_answers_df['q_question_code'] + " - " + q_answers_df['answer_text']
 q_answers = q_answers_df['display'].tolist()
 
-selected_answer = st.selectbox("Select answer for data cut:", [""] + q_answers)
+search_term = st.text_input("Type to search answers:")
+filtered_answers = fuzzy_search(search_term, q_answers)
+
+selected_answer = st.selectbox(
+    "Select answer for data cut:",
+    [""] + filtered_answers
+)
+
 
 if selected_answer:
     # Extract q_question_code and answer_text back out
