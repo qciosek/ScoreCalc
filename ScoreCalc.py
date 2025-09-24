@@ -5,7 +5,7 @@ import pandas as pd
 st.markdown(
     """
     <div style="text-align: center; margin-bottom: 20px;">
-        <h1 style="margin-bottom: 0;">Black Box Data</h1>
+        <h1 style="margin-bottom: 0;">Green Light IQ</h1>
         <h3 style="margin-top: 0;">Potential Hit Tool</h3>
     </div>
     """,
